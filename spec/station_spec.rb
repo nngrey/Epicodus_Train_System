@@ -4,7 +4,7 @@ describe Station do
 
   describe '#initialize' do
     it 'will initialize an instance of Station with a name' do
-      test_station = Station.new('Hawthorne')
+      test_station = Station.new({:name =>'Hawthorne'}) #{:name =>'Hawthorne'
       test_station.should be_an_instance_of Station
       test_station.name.should eq 'Hawthorne'
     end
@@ -25,7 +25,7 @@ describe Station do
 
   describe '#save' do
     it 'saves the station instances into the database' do
-      test_station = Station.new('Hawthorne')
+      test_station = Station.new({:name =>'Hawthorne'})
       test_station.save
       Station.all.should eq [test_station]
     end

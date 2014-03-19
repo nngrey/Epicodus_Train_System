@@ -6,10 +6,9 @@ class Station
 
   attr_reader :name, :id
 
-
-  def initialize(name, id=nil)
-    @name = name
-    @id = id
+  def initialize(attributes)
+    @name = attributes[:name]
+    @id = attributes[:id]
   end
 
   def ==(another_station)
@@ -21,7 +20,7 @@ class Station
     stations = []
     results.each do |result|
       name = result['name']
-      stations << Station.new(name)
+      stations << Station.new({:name => name})
     end
     stations
   end
