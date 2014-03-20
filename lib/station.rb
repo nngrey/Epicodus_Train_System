@@ -1,14 +1,12 @@
 require 'pg'
 
-#DB = PG.connect({:dbname => 'train_system'})
-#
 class Station
 
   attr_reader :name, :id
 
   def initialize(attributes)
-    @name = attributes[:name]
-    @id = attributes[:id]
+    @name = attributes[:name] #['name']
+    @id = attributes[:id] #['id']
   end
 
   def ==(another_station)
@@ -24,6 +22,15 @@ class Station
     end
     stations
   end
+
+  # def self.all
+  #   results = DB.exec("SELECT * FROM stations;")
+  #   stations = []
+  #   results.each do |result|
+  #     stations << Station.new(result)
+  #   end
+  #   stations
+  # end
 
   def save
     DB.exec("INSERT INTO stations (name) VALUES ('#{@name}');")
