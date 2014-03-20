@@ -24,7 +24,7 @@ def main_menu
     when 'c' then connect
     when 'v' then view_stations
     when 'r' then view_lines
-    when 'x' then puts "What you talkin' 'bout, Willis?"
+    when 'x' then puts "Goodbye"
   else
     main_menu
   end
@@ -66,12 +66,12 @@ def connect
   line_choice = gets.chomp.to_i
   line_choice = DB.exec("SELECT * FROM lines WHERE number = #{line_choice};")[0]['id']
 
-  join_id = DB.exec("INSERT INTO stops (line_id, station_id) VALUES ('#{line_choice}', '#{station_choice}') RETURNING id;")
-  puts join_id
-  puts station_id = DB.exec("SELECT * FROM stops WHERE id = #{join_id}")[0][station_id]
-  puts line_id = DB.exec("SELECT * FROM stops WHERE id = #{join_id}")[0][line_id]
-
-  puts "You have connected ... station with ... line."
+  join_id = DB.exec("INSERT INTO stops (line_id, station_id) VALUES ('#{line_choice}', '#{station_choice}') RETURNING id;")[0]['id']
+  station_id = DB.exec("SELECT * FROM stops WHERE id = #{join_id};")[0]['station_id']
+  line_id = DB.exec("SELECT * FROM stops WHERE id = #{join_id};")[0]['line_id']
+  station = DB.exec("SELECT * FROM stations WHERE id = #{station_id};")[0]['name']
+  line = DB.exec("SELECT * FROM lines WHERE id = #{line_id};")[0]['number']
+  puts "\nYou have connected #{station} station with #{line} line.\n\n"
   main_menu
 end
 welcome
