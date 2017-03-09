@@ -1,4 +1,4 @@
-Epicodus exercise using Ruby and SQL
+Epicodus exercise using Ruby, Postgres and SQL
 
 Train system
 
